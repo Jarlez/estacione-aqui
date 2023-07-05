@@ -9,8 +9,8 @@ export class ListCustomersUseCase {
     private ICustomerRepository: ICustomerRepository
   ) {}
 
-  async execute(): Promise<Customer[]> {
-    const customers = await this.ICustomerRepository.list();
+  async execute(name?: string): Promise<Customer[]> {
+    const customers = await this.ICustomerRepository.list(name);
     
     return customers;
   }
