@@ -7,7 +7,7 @@ import { Request, Response } from "express";
 
 export class RegisterCustomerController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const createRegisterCustomerUseCase = container.resolve(RegisterCustomerUseCase);
+    const registerCustomer = container.resolve(RegisterCustomerUseCase);
     
     const registerCustomerSchema = z.object({
       name: z.string(),
@@ -16,9 +16,9 @@ export class RegisterCustomerController {
       working_store: z.string()
     });
 
-    const customer = registerCustomerSchema.parse(req.body);
+    const customerId = registerCustomerSchema.parse(req.body);
 
-    await createRegisterCustomerUseCase.execute(customer);
+    await registerCustomer.execute(customerId);
     return res.status(201).send();
   }
 }

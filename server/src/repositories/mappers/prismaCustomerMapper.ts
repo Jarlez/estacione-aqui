@@ -12,6 +12,7 @@ export class PrismaCustomerMapper {
       working_store: customer.working_store,
       created_at: customer.created_at,
       updated_at: customer.updated_at,
+      delete_at: customer.delete_at
     }
   }
 

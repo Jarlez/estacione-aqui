@@ -19,6 +19,6 @@ export class RegisterCustomerUseCase {
     if (customerAlreadyExist) throw new AppErrors("Mensalista já cadastrado", 404);
 
     const customer = new Customer(data);
-    await this.ICustomerRepository.save(customer);
+    await this.ICustomerRepository.create(customer);
   }
 }

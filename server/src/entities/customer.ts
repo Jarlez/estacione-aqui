@@ -70,7 +70,7 @@ export class Customer {
     this.props.delete_at = new Date()
   }
 
-  public re_register() {
+  public undelete() {
     this.props.delete_at = null
   }
 
