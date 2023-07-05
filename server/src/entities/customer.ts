@@ -1,6 +1,6 @@
-import { Replace } from "../helpers/Replace"
+import { Replace } from "@helpers/Replace"
 import { randomUUID } from "node:crypto"
-import { CustomerProps } from "../DTOs/customer"
+import { CustomerProps } from "@DTO/customer"
 
 export class Customer {
   private _id: string;
@@ -11,13 +11,14 @@ export class Customer {
       created_at?: Date,
       updated_at?: Date
     }>,
-    id: string
+    id?: string
   ) {
     this._id = id ?? randomUUID();
     this.props = {
       ...props,
       created_at: props.created_at ?? new Date(),
-      updated_at: props.updated_at ?? new Date()
+      updated_at: props.updated_at ?? new Date(),
+      delete_at: props.delete_at ?? null
     }
   }
 
@@ -26,35 +27,35 @@ export class Customer {
   }
 
   public set name(name: string) {
-    this.props.name = name;
+    this.props.name = name
   }
 
   public get name(): string {
-    return this.name
+    return this.props.name
   }
 
   public set cpf(cpf: string) {
-    this.props.cpf = cpf;
+    this.props.cpf = cpf
   }
 
   public get cpf(): string {
-    return this.cpf
+    return this.props.cpf
   }
 
   public set contact_number(contact_number: string) {
-    this.props.contact_number = contact_number;
+    this.props.contact_number = contact_number
   }
 
   public get contact_number(): string {
-    return this.contact_number
+    return this.props.contact_number
   }
 
   public set working_store(working_store: string) {
-    this.props.working_store = working_store;
+    this.props.working_store = working_store
   }
 
   public get working_store(): string {
-    return this.working_store
+    return this.props.working_store
   }
 
   public get created_at(): Date {
@@ -71,5 +72,9 @@ export class Customer {
 
   public re_register() {
     this.props.delete_at = null
+  }
+
+  public get delete_at(): Date | null | undefined {
+    return this.props.delete_at
   }
 }
