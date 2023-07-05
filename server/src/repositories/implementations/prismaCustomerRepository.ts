@@ -5,6 +5,7 @@ import { PrismaCustomerMapper } from "@repositories/mappers/prismaCustomerMapper
 
 
 export class PrismaCustomerRepository implements ICustomerRepository {
+
   async create(data: Customer): Promise<void> {
     const raw = PrismaCustomerMapper.toPrisma(data);
     
@@ -20,6 +21,17 @@ export class PrismaCustomerRepository implements ICustomerRepository {
       }
     });
   }
+
+  async list(): Promise<Customer[]> {
+    const customers = await prisma.customer.findMany({
+      where: {
+        delete_at: null
+      }
+    });
+
+    return customers.map(PrismaCustomerMapper.toDomain)
+  }
+
   async findByCPF(cpf: string): Promise<Customer | null> {
     const customer = await prisma.customer.findFirst({
       where: {
@@ -42,7 +54,7 @@ export class PrismaCustomerRepository implements ICustomerRepository {
 
   async save(data: Customer): Promise<void> {
     const raw = PrismaCustomerMapper.toPrisma(data);
-    // console.log(raw)
+
     await prisma.customer.update({
       where: {
         id: raw.id,
