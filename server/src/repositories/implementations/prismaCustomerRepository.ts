@@ -5,6 +5,19 @@ import { PrismaCustomerMapper } from "@repositories/mappers/prismaCustomerMapper
 
 
 export class PrismaCustomerRepository implements ICustomerRepository {
+  async update(data: Customer, id: string): Promise<void> {
+    const raw = PrismaCustomerMapper.toPrisma(data);
+    const test = await prisma.customer.update({
+      where: {
+        id
+      },
+      data: {
+        name: raw.name,
+        contact_number: raw.contact_number,
+        working_store: raw.working_store
+      }
+    });
+  }
 
   async create(data: Customer): Promise<void> {
     const raw = PrismaCustomerMapper.toPrisma(data);
@@ -22,12 +35,23 @@ export class PrismaCustomerRepository implements ICustomerRepository {
     });
   }
 
-  async list(): Promise<Customer[]> {
-    const customers = await prisma.customer.findMany({
+  async list(name?: string | undefined): Promise<Customer[]> {
+    let customers = await prisma.customer.findMany({
       where: {
-        delete_at: null
+        delete_at: null,
+        name: {
+          contains: name,
+        }
       }
     });
+
+    customers = name
+      ? customers
+      : await prisma.customer.findMany({
+        where: {
+          delete_at: null
+        }
+      });
 
     return customers.map(PrismaCustomerMapper.toDomain)
   }
