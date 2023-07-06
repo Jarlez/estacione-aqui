@@ -7,4 +7,5 @@ export interface ICustomerRepository {
   save(data: Customer): Promise<void>;
   list(name?: string): Promise<Customer[]>;
   update(data: Customer, id: string): Promise<void>;
+  listCustomerDeleted(name?: string): Promise<Customer[]>;
 }
