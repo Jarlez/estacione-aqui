@@ -7,7 +7,7 @@ import { PrismaCustomerMapper } from "@repositories/mappers/prismaCustomerMapper
 export class PrismaCustomerRepository implements ICustomerRepository {
   async update(data: Customer, id: string): Promise<void> {
     const raw = PrismaCustomerMapper.toPrisma(data);
-    const test = await prisma.customer.update({
+    await prisma.customer.update({
       where: {
         id
       },
