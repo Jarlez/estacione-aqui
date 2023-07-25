@@ -14,6 +14,9 @@ export class PrismaCustomerRepository implements ICustomerRepository {
         name: {
           contains: name,
         }
+      },
+      include: {
+        Vehicle: true
       }
     });
     
@@ -24,9 +27,12 @@ export class PrismaCustomerRepository implements ICustomerRepository {
           delete_at: {
             not: null
           }
+        },
+        include: {
+          Vehicle: true
         }
       });
-
+    
     return customers.map(PrismaCustomerMapper.toDomain)
   }
   
@@ -67,6 +73,9 @@ export class PrismaCustomerRepository implements ICustomerRepository {
         name: {
           contains: name,
         }
+      },
+      include: {
+        Vehicle: true
       }
     });
 
@@ -75,9 +84,13 @@ export class PrismaCustomerRepository implements ICustomerRepository {
       : await prisma.customer.findMany({
         where: {
           delete_at: null
+        },
+        include: {
+          Vehicle: true
         }
       });
 
+    console.log(customers)
     return customers.map(PrismaCustomerMapper.toDomain)
   }
 

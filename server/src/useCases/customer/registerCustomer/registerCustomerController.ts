@@ -16,9 +16,9 @@ export class RegisterCustomerController {
       working_store: z.string()
     });
 
-    const customerId = registerCustomerSchema.parse(req.body);
+    const customer = registerCustomerSchema.parse(req.body);
 
-    await registerCustomer.execute(customerId);
+    await registerCustomer.execute(customer);
     return res.status(201).send();
   }
 }
