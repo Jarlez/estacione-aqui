@@ -90,7 +90,6 @@ export class PrismaCustomerRepository implements ICustomerRepository {
         }
       });
 
-    console.log(customers)
     return customers.map(PrismaCustomerMapper.toDomain)
   }
 

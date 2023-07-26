@@ -4,11 +4,39 @@ import { IVehicleRepository } from "@repositories/IVehicleRepository";
 import { PrismaVehicleMapper } from "@repositories/mappers/prismaVehicleMapper";
 
 export class PrismaVehicleRepository implements IVehicleRepository {
+  async findByCustomerId(customer_id: string): Promise<Vehicle | null> {
+    const vehicle = await prisma.vehicle.findFirst({
+      where: {
+        customer_id
+      }
+    });
+
+    return vehicle ? PrismaVehicleMapper.toDomain(vehicle) : null
+  }
+  
+  async findById(id: string): Promise<Vehicle | null> {
+    const vehicle = await prisma.vehicle.findFirst({
+      where: {
+        id
+      }
+    });
+
+    return vehicle ? PrismaVehicleMapper.toDomain(vehicle) : null
+  }
+
+  async delete(id: string): Promise<void> {
+    await prisma.vehicle.delete({
+      where: {
+        id
+      }
+    });
+  }
+
   async findByPlate(plate: string): Promise<Vehicle | null> {
     const vehicle = await prisma.vehicle.findFirst({
       where: {
         plate
-      }
+      },
     });
     
     return vehicle ? PrismaVehicleMapper.toDomain(vehicle) : null
@@ -29,5 +57,4 @@ export class PrismaVehicleRepository implements IVehicleRepository {
       }
     });
   }
-
 }
