@@ -12,17 +12,17 @@ export class RegisterVehicleUseCase {
     private IVehicleRepository: IVehicleRepository
   ) {}
 
-  async execute(data: IRegisterVehicle, customer_id: string): Promise<void> {
+  async execute(data: IRegisterVehicle, customerId: string): Promise<void> {
     const vehicleAlreadyExist = await this.IVehicleRepository.findByPlate(data.plate);
 
     if (vehicleAlreadyExist) throw new AppErrors("Veículo já cadastrado", 400);
 
-    const customerHasVehicle = await this.IVehicleRepository.findByCustomerId(customer_id);
+    const customerHasVehicle = await this.IVehicleRepository.findByCustomerId(customerId);
 
     if (customerHasVehicle) throw new AppErrors("Mensalista já possui veículo cadastrado", 422);
 
     const vehicle = new Vehicle(data);
 
-    await this.IVehicleRepository.create(vehicle, customer_id);
+    await this.IVehicleRepository.create(vehicle, customerId);
   }
 }

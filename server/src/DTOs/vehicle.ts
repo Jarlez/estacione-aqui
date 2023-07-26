@@ -8,8 +8,15 @@ export interface VehicleProps {
 }
 
 export interface IRegisterVehicle {
-  brand: string
-  model: string
-  plate: string
-  color: string
+  brand: string;
+  model: string;
+  plate: string;
+  color: string;
+}
+
+export interface IUpdatevehicle {
+  brand: string;
+  model: string;
+  plate: string;
+  color: string;
 }

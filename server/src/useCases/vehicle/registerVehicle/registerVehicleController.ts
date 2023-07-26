@@ -13,10 +13,10 @@ export class RegisterVehicleController {
       color: z.string(),
     });
 
-    const { customer_id } = req.query;
+    const { customerId } = req.query;
     const vehicle = registerVehicleSchema.parse(req.body);
 
-    await registerVehicle.execute(vehicle, customer_id as string);
+    await registerVehicle.execute(vehicle, customerId as string);
     
     return res.status(201).send();
   }
