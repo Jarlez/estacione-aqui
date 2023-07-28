@@ -20,5 +20,20 @@ model Customer {
   updated_at     DateTime  @default(now())
   delete_at      DateTime?
 
+  Vehicle Vehicle?
+
   @@map("customer")
+}
+
+model Vehicle {
+  id         String   @id @default(uuid())
+  brand      String
+  model      String
+  plate      String
+  color      String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  customer    Customer @relation(fields: [customer_id], references: [id])
+  customer_id String   @unique
 }
