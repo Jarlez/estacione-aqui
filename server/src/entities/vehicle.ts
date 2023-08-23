@@ -26,36 +26,36 @@ export class Vehicle {
     return this._id;
   }
 
-  public set brand(brand: string) {
-    this.props.brand = brand
-  }
-
   public get brand(): string {
-    return this.props.brand
+    return this.props.brand;
   }
 
-  public set model(model: string) {
-    this.props.model = model
+  public set brand(brand: string) {
+    this.props.brand = brand;
   }
 
   public get model(): string {
-    return this.props.model
+    return this.props.model;
   }
 
-  public set plate(plate: string) {
-    this.props.plate = plate
+  public set model(model: string) {
+    this.props.model = model;
   }
 
   public get plate(): string {
-    return this.props.plate
+    return this.props.plate;
   }
 
-  public set color(color: string) {
-    this.props.color = color
+  public set plate(plate: string) {
+    this.props.plate = plate;
   }
 
   public get color(): string {
-    return this.props.color
+    return this.props.color;
+  }
+
+  public set color(color: string) {
+    this.props.color = color;
   }
 
   public get created_at(): Date {

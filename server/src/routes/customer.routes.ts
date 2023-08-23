@@ -1,11 +1,11 @@
 import { Router } from "express";
 
-import { RegisterCustomerController } from "../modules/customer/useCases/registerCustomer/registerCustomerController";
-import { DeleteCustomerController } from "modules/customer/useCases/softDeleteCustomer/deleteCustomerController";
-import { UndeleteCustomerController } from "modules/customer/useCases/undeleteCustomer/undeleteCustomerController";
-import { ListCustomersController } from "modules/customer/useCases/listCustomers/listCustomersController";
-import { UpdateCustomerController } from "modules/customer/useCases/updateCustomer/updateCustomerController";
-import { ListCustomerDeletedController } from "modules/customer/useCases/listCustomDelete/listCustomerDeletedController";
+import { RegisterCustomerController } from "@useCases/customer/registerCustomer/registerCustomerController";
+import { DeleteCustomerController } from "@useCases/customer/softDeleteCustomer/deleteCustomerController";
+import { UndeleteCustomerController } from "@useCases/customer/undeleteCustomer/undeleteCustomerController";
+import { ListCustomersController } from "@useCases/customer/listCustomers/listCustomersController";
+import { UpdateCustomerController } from "@useCases/customer/updateCustomer/updateCustomerController";
+import { ListCustomerDeletedController } from "@useCases/customer/listCustomDelete/listCustomerDeletedController";
 
 export const customerRoutes = Router();
 

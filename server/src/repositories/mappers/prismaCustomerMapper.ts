@@ -1,5 +1,6 @@
 import { Customer } from "@entites/customer";
 import { Customer as rawCustomer } from "@prisma/client"
+import { PrismaVehicleMapper } from "./prismaVehicleMapper";
 
 
 export class PrismaCustomerMapper {
@@ -16,7 +17,11 @@ export class PrismaCustomerMapper {
     }
   }
 
-  static toDomain(raw: rawCustomer) {
+  static toDomain(raw: rawCustomer & { Vehicle?: any }) {
+    const vehicleData = raw.Vehicle;
+
+    const vehicle = PrismaVehicleMapper.toDomain(vehicleData);
+
     return new Customer({
       name: raw.name,
       cpf: raw.cpf,
@@ -26,7 +31,8 @@ export class PrismaCustomerMapper {
       updated_at: raw.updated_at,
       delete_at: raw.delete_at,
     },
-      raw.id
+      raw.id,
+      vehicle
     );
   }
 }
