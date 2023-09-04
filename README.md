@@ -26,7 +26,7 @@ Esse projeto possui as seguintes tecnologias:
 
 ## 💻 Projeto
 
-"EStacione aqui!" é um projeto desenvolvido para estacionamentos privados
+"Estacione aqui!" é um projeto desenvolvido para estacionamentos privados
 
 - Projeto ainda está em desenvolvimento.
 
