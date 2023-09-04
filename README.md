@@ -28,7 +28,7 @@ Esse projeto possui as seguintes tecnologias:
 
 "EStacione aqui!" é um projeto desenvolvido para estacionamentos privados
 
-- [Quando finalizado, será postado aqui.]()
+- Projeto ainda está em desenvolvimento.
 
 
 ## :memo: Licença
